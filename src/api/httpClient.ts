@@ -16,7 +16,11 @@ export const getCat = async () => {
     );
     const result = await response.json();
     return result[0].url;
-  } catch {
-    (error: Error) => console.log('error', error);
+  } catch (e) {
+    if (typeof e === 'string') {
+      console.log(e);
+    } else if (e instanceof Error) {
+      console.log(e.message); // works, `e` narrowed to Error
+    }
   }
 };
