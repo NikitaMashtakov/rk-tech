@@ -14,7 +14,10 @@ function App() {
   const [isEnabled, setIsEnabled] = useState<boolean>(true);
   const [timerEnabled, setTimerEnabled] = useState<boolean>(false);
 
-  useEffect(() => getNewCat(), []);
+  useEffect(() => {
+    getNewCat();
+    return clearInterval(intervalId);
+  }, []);
 
   useEffect(() => {
     if (timerEnabled) {
